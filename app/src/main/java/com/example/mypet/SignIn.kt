@@ -103,6 +103,9 @@ class SignIn : AppCompatActivity() {
                             // Handle database error
                             Log.w("SignIn", "Error checking user profile", profileTask.exception)
                             Toast.makeText(baseContext, "Failed to check profile, try again.", Toast.LENGTH_SHORT).show()
+                            binding.progressBar3.visibility = View.GONE
+                            binding.editTextText.text.clear()
+                            binding.editTextTextPassword.text.clear()
                         }
                     }
                 }else {
