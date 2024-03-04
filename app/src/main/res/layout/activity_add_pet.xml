@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_theme_light"
+    tools:context=".add_pet">
+
+    <Button
+        android:id="@+id/petSave"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/app_theme"
+        android:text="Save"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/petDescription"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/edit_text_backgroud"
+        android:drawableLeft="@drawable/description"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/app_theme"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Enter your pet description"
+        android:inputType="textMultiLine"
+        android:paddingVertical="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petPrice" />
+
+    <EditText
+        android:id="@+id/petPrice"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edit_text_backgroud"
+        android:drawableLeft="@drawable/rupee_24"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/app_theme"
+        android:ems="10"
+        android:hint="Set your pet price"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petBreed" />
+
+    <EditText
+        android:id="@+id/petName"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:background="@drawable/edit_text_backgroud"
+        android:drawableLeft="@drawable/name"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/app_theme"
+        android:ems="10"
+        android:hint="Enter your pet name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="342dp" />
+
+    <EditText
+        android:id="@+id/petBreed"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/edit_text_backgroud"
+        android:drawableLeft="@drawable/animals"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/app_theme"
+        android:ems="10"
+        android:hint="Enter your pet breed"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petName" />
+</androidx.constraintlayout.widget.ConstraintLayout>

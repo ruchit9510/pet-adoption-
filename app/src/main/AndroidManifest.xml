@@ -18,6 +18,9 @@
         android:theme="@style/Theme.MyPet"
         tools:targetApi="34">
         <activity
+            android:name=".add_pet"
+            android:exported="false" />
+        <activity
             android:name=".SellPet"
             android:exported="false" />
         <activity
