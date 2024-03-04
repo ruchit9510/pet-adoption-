@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_theme_light"
+    tools:context=".Profile">
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="137dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/app_theme"
+        android:text="Logout"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/updateBtn1" />
+
+    <Button
+        android:id="@+id/updateBtn1"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="@color/app_theme"
+        android:text="Update Profile"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userAddress2" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="68dp"
+        android:src="@drawable/baseline_account_circle_24"
+        app:civ_border_color="@color/app_theme"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bottom_background"
+        android:elevation="2dp"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_menu" />
+
+    <TextView
+        android:id="@+id/userName2"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/edit_text_backgroud"
+        android:drawablePadding="8dp"
+        android:hint="username"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="8dp"
+        android:textColor="#1A1A27"
+        android:textSize="18sp"
+        app:drawableLeftCompat="@drawable/baseline_person"
+        app:drawableTint="@color/app_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/userMail2"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_backgroud"
+        android:drawablePadding="8dp"
+        android:hint="userMail"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="8dp"
+        android:textColor="#1A1A27"
+        android:textSize="18sp"
+        app:drawableLeftCompat="@drawable/baseline_email_24"
+        app:drawableTint="@color/app_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName2" />
+
+    <TextView
+        android:id="@+id/userNumber2"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_backgroud"
+        android:drawablePadding="8dp"
+        android:hint="userNumber"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="8dp"
+        android:textColor="#1A1A27"
+        android:textSize="18sp"
+        app:drawableLeftCompat="@drawable/baseline_phone_24"
+        app:drawableTint="@color/app_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userMail2" />
+
+    <TextView
+        android:id="@+id/userAddress2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_backgroud"
+        android:drawablePadding="8dp"
+        android:hint="userAddress"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="10dp"
+        android:textColor="#1A1A27"
+        android:textSize="18sp"
+        app:drawableLeftCompat="@drawable/baseline_home_24"
+        app:drawableTint="@color/app_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNumber2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
