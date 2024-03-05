@@ -11,7 +11,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.mypet.databinding.ActivityProfileBinding
@@ -35,7 +34,7 @@ class Profile : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
     private lateinit var user: User
-    private val storagePermission = Manifest.permission.READ_MEDIA_IMAGES
+    private val storagePermission = Manifest.permission.READ_EXTERNAL_STORAGE
     private lateinit var selectedImageUri: Uri
     private lateinit var sharedPref: SharedPreferences
     private val PREF_KEY_IS_LOGGED_IN = "isLoggedIn"
