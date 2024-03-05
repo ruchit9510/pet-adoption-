@@ -118,16 +118,16 @@ private fun uploadProfilePic(){
     }
 
     // BackPress Button
-//    private var backPressCount = 0
-//    override fun onBackPressed() {
-//        if (backPressCount == 0) {
-//            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show()
-//            backPressCount++
-//        } else {
-//            super.onBackPressed()
-//            finishAffinity()
-//        }
-//    }
+    private var backPressCount = 0
+    override fun onBackPressed() {
+        if (backPressCount == 0) {
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show()
+            backPressCount++
+        } else {
+            super.onBackPressed()
+            finishAffinity()
+        }
+    }
 
 
     //VALIDATION.
@@ -149,13 +149,17 @@ private fun uploadProfilePic(){
         if (number.isEmpty()) {
             binding.profileMobilenumber.error = "Please enter your mobile number."
             isValid = false
+        } else if (!isValidIndianMobileNumber(number)) {
+            binding.profileMobilenumber.error = "Please enter a valid Indian mobile number."
+            isValid = false
         }
-        // Validate email
+
+        // Validate email (Gmail specific)
         if (email.isEmpty()) {
             binding.profileEmail.error = "Please enter your email address."
             isValid = false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.profileEmail.error = "Please enter a valid email address."
+        } else if (!email.endsWith("@gmail.com")) {
+            binding.profileEmail.error = "Please enter a valid Gmail address."
             isValid = false
         }
 
@@ -189,6 +193,12 @@ private fun uploadProfilePic(){
             }
         }
     }
+    // Function to validate Indian mobile number
+    private fun isValidIndianMobileNumber(number: String): Boolean {
+        val regex = "^[6789]\\d{9}$".toRegex() // Matches 10 digit numbers starting with 6, 7, 8, or 9
+        return number.matches(regex)
+    }
+
 
 }
 

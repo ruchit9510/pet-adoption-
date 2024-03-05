@@ -77,38 +77,48 @@ class UpdatePage : AppCompatActivity() {
         if (number.isEmpty()) {
             binding.updateMobilenumber.error = "Please enter your mobile number."
             isValid = false
+        } else if (!isValidIndianMobileNumber(number)) {
+            binding.updateMobilenumber.error = "Please enter a valid Indian mobile number."
+            isValid = false
         }
-        // Validate email
+
+        // Validate email (Gmail specific)
         if (email.isEmpty()) {
             binding.updateEmail.error = "Please enter your email address."
             isValid = false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.updateEmail.error = "Please enter a valid email address."
+        } else if (!email.endsWith("@gmail.com")) {
+            binding.updateEmail.error = "Please enter a valid Gmail address."
             isValid = false
         }
 
-        //Validate address
-        if(address.isEmpty()){
-            binding.updateAddress.error = "Please enter your address"
+        // Validate address
+        if (address.isEmpty()) {
+            binding.updateAddress.error = "Please enter your address."
+            isValid = false
         }
 
-        if (isValid){
+        if (isValid) {
             val uid = auth.currentUser?.uid
-            val user = User(name,email,number,address)
-            if(uid != null){
+            val user = User(name, email, number, address)
+            if (uid != null) {
                 binding.updateprogressBar.visibility = View.VISIBLE
-                databaseReference.child(uid).setValue(user).addOnCompleteListener{
-
-                    if (it.isSuccessful){
+                databaseReference.child(uid).setValue(user).addOnCompleteListener {
+                    if (it.isSuccessful) {
                         finish()
-                    }
-                    else{
-                        Toast.makeText(this@UpdatePage,"Failed to update profile",Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@UpdatePage, "Failed to update profile", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
     }
+
+    // Function to validate Indian mobile number
+    private fun isValidIndianMobileNumber(number: String): Boolean {
+        val regex = "^[6789]\\d{9}$".toRegex() // Matches 10 digit numbers starting with 6, 7, 8, or 9
+        return number.matches(regex)
+    }
+
 
     // FETCH USER DATA
     private fun getUserData() {
