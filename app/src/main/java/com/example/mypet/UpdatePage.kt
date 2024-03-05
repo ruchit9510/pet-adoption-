@@ -35,15 +35,6 @@ class UpdatePage : AppCompatActivity() {
     private lateinit var user: User
     private lateinit var uid : String
 
-    private val requestPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            if (permissions[storagePermission] == true) {
-                openGallery()
-            } else {
-                // Handle permission denial: explain why permission is needed, offer retry option
-                Toast.makeText(this, "Storage permission is required to access images.", Toast.LENGTH_SHORT).show()
-            }
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,75 +54,8 @@ class UpdatePage : AppCompatActivity() {
             validateFields()
         }
 
-        //Take Photo From Gallery
-        binding.updateimageView.setOnClickListener {
-            if (checkSelfPermission(storagePermission) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissionLauncher.launch(arrayOf(storagePermission))
-            } else {
-                openGallery()
-            }
-        }
     }
 
-    // Function For Upload Profile Image : Firebase
-    private fun uploadProfilePic(){
-        if (selectedImageUri != null){
-            storageReference  = FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid+".jpg")
-            storageReference.putFile(selectedImageUri).addOnSuccessListener {
-
-                Toast.makeText(this@UpdatePage,"Profile successfully added",Toast.LENGTH_SHORT).show()
-                binding.updateprogressBar.visibility = View.INVISIBLE
-                finish()
-
-            }.addOnFailureListener{
-                Toast.makeText(this@UpdatePage,"Failed to update profile",Toast.LENGTH_SHORT).show()
-            }
-        }
-        else {
-            finish()
-        }
-
-    }
-
-    //Take Photo From Gallery
-    private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        try {
-            startActivityForResult(intent, 1)
-        } catch (e: Exception) {
-            // Handle exception when starting activity for result fails
-            Toast.makeText(this, "Failed to open gallery.", Toast.LENGTH_SHORT).show()
-        }
-    }
-    // Image
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
-//            try {
-//                selectedImageUri = data.data!!
-//                val imageStream = contentResolver.openInputStream(selectedImageUri)
-//                val selectedImage = BitmapFactory.decodeStream(imageStream)
-//                binding.updateimageView.setImageBitmap(selectedImage)
-//            } catch (e: Exception) {
-//                // Handle exceptions when accessing or decoding image
-//                Toast.makeText(this, "Failed to load image.", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
-            try {
-                selectedImageUri = data.data!!
-                val imageStream = contentResolver.openInputStream(selectedImageUri)
-                val selectedImage = BitmapFactory.decodeStream(imageStream)
-                binding.updateimageView.setImageBitmap(selectedImage)
-            } catch (e: Exception) {
-                // Handle exceptions when accessing or decoding image
-                Toast.makeText(this, "Failed to load image.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
 
     //VALIDATION.
@@ -168,23 +92,15 @@ class UpdatePage : AppCompatActivity() {
             binding.updateAddress.error = "Please enter your address"
         }
 
-        //Validate Image
-        if (binding.updateimageView.drawable == null) {
-            Toast.makeText(this, "Please select a profile image.", Toast.LENGTH_SHORT).show()
-            isValid = false
-        }
-
         if (isValid){
             val uid = auth.currentUser?.uid
             val user = User(name,email,number,address)
             if(uid != null){
-
+                binding.updateprogressBar.visibility = View.VISIBLE
                 databaseReference.child(uid).setValue(user).addOnCompleteListener{
 
                     if (it.isSuccessful){
-
-                        uploadProfilePic()
-                        binding.updateprogressBar.visibility = View.VISIBLE
+                        finish()
                     }
                     else{
                         Toast.makeText(this@UpdatePage,"Failed to update profile",Toast.LENGTH_SHORT).show()
@@ -205,7 +121,6 @@ class UpdatePage : AppCompatActivity() {
                     binding.updateEmail.setText(user.mail)
                     binding.updateMobilenumber.setText(user.number)
                     binding.updateAddress.setText(user.address)
-                    getUserProfile()
                 } else {
                     // Handle non-existent user data
                     Toast.makeText(this@UpdatePage, "User data not found", Toast.LENGTH_SHORT).show()
@@ -218,20 +133,6 @@ class UpdatePage : AppCompatActivity() {
         })
     }
 
-    //GET USER IMAGE
-    private fun getUserProfile() {
-
-        storageReference = FirebaseStorage.getInstance().reference.child("Users/$uid.jpg")
-        val localFile = File.createTempFile("tempImage","jpg")
-        storageReference.getFile(localFile).addOnSuccessListener {
-
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            binding.updateimageView.setImageBitmap(bitmap)
-        }.addOnFailureListener{
-
-            Toast.makeText(this@UpdatePage,"Failed to retrieve image",Toast.LENGTH_SHORT).show()
-        }
-    }
 }
 
 
