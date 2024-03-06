@@ -21,9 +21,6 @@
             android:name=".AddPet"
             android:exported="false" />
         <activity
-            android:name=".SellPet"
-            android:exported="false" />
-        <activity
             android:name=".UpdatePage"
             android:exported="false" />
         <activity

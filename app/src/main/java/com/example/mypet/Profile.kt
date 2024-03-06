@@ -11,6 +11,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.mypet.databinding.ActivityProfileBinding
@@ -34,7 +35,7 @@ class Profile : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
     private lateinit var user: User
-    private val storagePermission = Manifest.permission.READ_EXTERNAL_STORAGE
+    private val storagePermission = Manifest.permission.READ_MEDIA_IMAGES
     private lateinit var selectedImageUri: Uri
     private lateinit var sharedPref: SharedPreferences
     private val PREF_KEY_IS_LOGGED_IN = "isLoggedIn"
@@ -122,7 +123,7 @@ class Profile : AppCompatActivity() {
         if (selectedImageUri != null){
             storageReference  = FirebaseStorage.getInstance().getReference("Users/"+auth.currentUser?.uid+".jpg")
             storageReference.putFile(selectedImageUri).addOnSuccessListener {
-
+                binding.profileprogressBar.visibility = View.GONE
                 Toast.makeText(this@Profile,"Profile successfully added",Toast.LENGTH_SHORT).show()
 
             }.addOnFailureListener{
@@ -139,6 +140,7 @@ class Profile : AppCompatActivity() {
                 val imageStream = contentResolver.openInputStream(selectedImageUri)
                 val selectedImage = BitmapFactory.decodeStream(imageStream)
                 binding.profileImage.setImageBitmap(selectedImage)
+                binding.profileprogressBar.visibility = View.VISIBLE
                 uploadProfilePic()
             } catch (e: Exception) {
                 // Handle exceptions when accessing or decoding image

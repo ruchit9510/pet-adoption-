@@ -27,10 +27,9 @@ class AddProfile : AppCompatActivity() {
     private val storagePermission = Manifest.permission.READ_MEDIA_IMAGES
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference : DatabaseReference
-    private lateinit var storageReference : StorageReference
     private var selectedImageUri: Uri? = null
-//    private lateinit var sharedPref: SharedPreferences
-//    private val PREF_KEY_IS_LOGGED_IN = "isLoggedIn"
+    private lateinit var sharedPref: SharedPreferences
+    private val PREF_KEY_IS_LOGGED_IN = "isLoggedIn"
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -49,13 +48,15 @@ class AddProfile : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
 
+        sharedPref = getSharedPreferences("app_prefs", MODE_PRIVATE)
+        sharedPref.edit().putBoolean(PREF_KEY_IS_LOGGED_IN, false).apply()
 
         binding.saveBtn.setOnClickListener{
             validateFields()
         }
 
 
-//Take Photo From Gallery
+        //Take storage Permission from device
         binding.imageView.setOnClickListener {
             if (checkSelfPermission(storagePermission) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissionLauncher.launch(arrayOf(storagePermission))
@@ -63,6 +64,7 @@ class AddProfile : AppCompatActivity() {
                 openGallery()
             }
         }
+
 
     }
 // Function For Upload Profile Image : Firebase
@@ -80,6 +82,7 @@ private fun uploadProfilePic(){
                 binding.profileMobilenumber.text.clear()
                 binding.profileName.text.clear()
                 startActivity(Intent(this, Home::class.java))
+                sharedPref.edit().putBoolean(PREF_KEY_IS_LOGGED_IN, true).apply()
             }.addOnFailureListener { exception ->
                 Toast.makeText(this@AddProfile,"Failed to update profile: ${exception.message}",Toast.LENGTH_SHORT).show()
             }
@@ -183,7 +186,6 @@ private fun uploadProfilePic(){
                 databaseReference.child(uid).setValue(user).addOnCompleteListener{
 
                     if (it.isSuccessful){
-
                         uploadProfilePic()
                     }
                     else{

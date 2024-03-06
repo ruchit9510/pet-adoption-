@@ -1,19 +1,9 @@
 package com.example.mypet
 
-import android.Manifest
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Patterns
 import android.view.View
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import com.example.mypet.databinding.ActivityAddProfileBinding
 import com.example.mypet.databinding.ActivityUpdatePageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -21,17 +11,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import java.io.File
-
 class UpdatePage : AppCompatActivity() {
     private lateinit var binding: ActivityUpdatePageBinding
-    private val storagePermission = Manifest.permission.READ_MEDIA_IMAGES
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference : DatabaseReference
-    private lateinit var storageReference : StorageReference
-    private lateinit var selectedImageUri: Uri
     private lateinit var user: User
     private lateinit var uid : String
 
