@@ -7,8 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
     <color name="select">#B1CDFA</color>
-    <color name="text">#1A1A27</color>
+    <color name="black">#1A1A27</color>
     <color name="app_theme">#EE0073FF</color>
+    <color name="app_theme_light_dark">#C90072FF</color>
     <color name="app_theme_2">#EE1E7EF1</color>
     <color name="app_theme_light">#F1F7FB</color>
     <color name="edit_text_border">#039A9F</color>
