@@ -98,10 +98,10 @@ class AddPet : AppCompatActivity() {
     private fun validateFields(): Boolean {
         var isValid = true
 
-        val petName = binding.petName.text.toString().trim()
+        val petAge = binding.petAge.text.toString().trim()
         val petBreed = binding.petBreed.text.toString().trim()
         val petPrice = binding.petPrice.text.toString().trim()
-        val selectedRadioButtonId = binding.radioGroup.checkedRadioButtonId
+
         val petDescription = binding.petDescription.text.toString().trim()
 
         // Check if Pet Breed is empty
@@ -116,7 +116,17 @@ class AddPet : AppCompatActivity() {
             isValid = false
         }
 
-
+        //Chek for Pet Age
+        if (petAge.isEmpty()){
+            binding.petAge.error = "Please Enter Your Pet Age"
+            isValid = false
+        }else{
+            val age = petAge.toIntOrNull()
+            if (age == null || age<=0 || age>30){
+                binding.petAge.error = "Please enter a valid age"
+                isValid = false
+            }
+        }
 
         // You can add further validations for pet price format (optional)
           try {
@@ -139,6 +149,7 @@ class AddPet : AppCompatActivity() {
         val checkedRadioButtonId = binding.radioGroup.checkedRadioButtonId
         val checkedRadioButton = findViewById<RadioButton>(checkedRadioButtonId)
         val petType = checkedRadioButton.text.toString().trim()
+        val petAge = binding.petAge.text.trim()
         val petName = binding.petName.text.toString().trim()
         val petPrice = binding.petPrice.text.toString().trim()
         val petDescription = binding.petDescription.text.toString().trim()
@@ -169,7 +180,8 @@ class AddPet : AppCompatActivity() {
                         val imageUrl = task.result.toString()
                         // Save pet information to Firebase Database with image URL
                         if (userId != null) {
-                            savePetToDatabase(userId,petType, petName, petPrice, petDescription, imageUrl)
+                            savePetToDatabase(userId,petType,
+                                petAge.toString(), petName, petPrice, petDescription, imageUrl)
                         }
                     } else {
                         Toast.makeText(this, "Failed to get image URL.", LENGTH_SHORT).show()
@@ -190,19 +202,21 @@ class AddPet : AppCompatActivity() {
     private fun savePetToDatabase(
         userId: String,
         petType: String,
+        petAge: String,
         petName: String,
         petPrice: String,
         petDescription: String,
         imageUrl: String
     ) {
         val petId = databaseReference.push().key.toString() // Unique key
-        val pet = Pet(userId, petType, petName, petPrice, petDescription, imageUrl)
+        val pet = Pet(userId, petType, petAge , petName, petPrice, petDescription, imageUrl)
         databaseReference.child(petId).setValue(pet)
             .addOnSuccessListener {
                 Toast.makeText(this, "Pet information saved successfully!", Toast.LENGTH_SHORT)
                     .show()
                 // Clear fields after successful save (optional)
                 binding.petName.text.clear()
+                binding.petAge.text.clear()
                 binding.petBreed.text.clear()
                 binding.petPrice.text.clear()
                 binding.petDescription.text.clear()

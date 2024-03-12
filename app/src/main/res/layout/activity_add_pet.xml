@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,99 +8,103 @@
     android:backgroundTint="@color/app_theme_light"
     tools:context=".AddPet">
 
-
-    <EditText
-        android:id="@+id/petName"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_backgroud"
-        android:drawableLeft="@drawable/name"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/app_theme"
-        android:ems="10"
-        android:hint="Enter your pet name"
-        android:inputType="text"
-        android:textColor="#1A1A27"
-        android:textColorHint="#653E3C3C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:checkedButton="@id/petDog"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-        <RadioButton
-            android:id="@+id/petDog"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/bt_radio"
-            android:button="@null"
-            android:paddingStart="38dp"
-            android:paddingEnd="30dp"
-            android:text="@string/dog"
+        <EditText
+            android:id="@+id/petName"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_backgroud"
+            android:drawableLeft="@drawable/name"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/app_theme"
+            android:ems="10"
+            android:hint="Enter your pet name"
+            android:inputType="text"
             android:textColor="#1A1A27"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textColorHint="#653E3C3C"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-        <RadioButton
-            android:id="@+id/petCat"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/bt_radio"
-            android:button="@null"
-            android:paddingStart="38dp"
-            android:paddingEnd="30dp"
-            android:text="@string/cat"
-            android:textColor="#1A1A27"
-            tools:ignore="TouchTargetSizeCheck" />
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="157dp"
+            android:layout_height="146dp"
+            android:layout_marginTop="35dp"
+            android:checkedButton="@id/petDog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.226"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
-        <RadioButton
-            android:id="@+id/petRabbit"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/bt_radio"
-            android:button="@null"
-            android:paddingStart="38dp"
-            android:paddingEnd="30dp"
-            android:text="@string/rabbit"
-            android:textColor="#1A1A27"
-            tools:ignore="TouchTargetSizeCheck" />
 
-        <RadioButton
-            android:id="@+id/petFish"
-            android:layout_width="120dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@drawable/bt_radio"
-            android:button="@null"
-            android:paddingStart="38dp"
-            android:paddingEnd="30dp"
-            android:text="@string/fish"
-            android:textColor="#1A1A27"
-            tools:ignore="TouchTargetSizeCheck" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/petDog"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/bt_radio"
+                android:button="@null"
+                android:paddingStart="38dp"
+                android:paddingEnd="30dp"
+                android:text="@string/dog"
+                android:textColor="#1A1A27"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/petCat"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/bt_radio"
+                android:button="@null"
+                android:paddingStart="38dp"
+                android:paddingEnd="30dp"
+                android:text="@string/cat"
+                android:textColor="#1A1A27"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/petRabbit"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/bt_radio"
+                android:button="@null"
+                android:paddingStart="38dp"
+                android:paddingEnd="30dp"
+                android:text="@string/rabbit"
+                android:textColor="#1A1A27"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/petFish"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/bt_radio"
+                android:button="@null"
+                android:paddingStart="38dp"
+                android:paddingEnd="30dp"
+                android:text="@string/fish"
+                android:textColor="#1A1A27"
+                tools:ignore="TouchTargetSizeCheck" />
+        </RadioGroup>
 
     <Button
         android:id="@+id/petSaveBtn"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:backgroundTint="@color/app_theme"
         android:text="Save"
         android:textColor="@color/white"
@@ -109,83 +113,83 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/petDescription" />
 
-    <EditText
-        android:id="@+id/petDescription"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_backgroud"
-        android:drawableLeft="@drawable/description"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/app_theme"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Enter your pet description"
-        android:inputType="textMultiLine"
-        android:paddingVertical="12dp"
-        android:textColor="#1A1A27"
-        android:textColorHint="#653E3C3C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petPrice" />
+        <EditText
+            android:id="@+id/petDescription"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_backgroud"
+            android:drawableLeft="@drawable/description"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/app_theme"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Enter your pet description"
+            android:inputType="textMultiLine"
+            android:paddingVertical="12dp"
+            android:textColor="#1A1A27"
+            android:textColorHint="#653E3C3C"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/petPrice" />
 
-    <EditText
-        android:id="@+id/petBreed"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_backgroud"
-        android:drawableLeft="@drawable/animals"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/app_theme"
-        android:ems="10"
-        android:hint="Enter your pet breed"
-        android:inputType="text"
-        android:textColor="#1A1A27"
-        android:textColorHint="#653E3C3C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petName" />
+        <EditText
+            android:id="@+id/petBreed"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_backgroud"
+            android:drawableLeft="@drawable/animals"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/app_theme"
+            android:ems="10"
+            android:hint="Enter your pet breed"
+            android:inputType="text"
+            android:textColor="#1A1A27"
+            android:textColorHint="#653E3C3C"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/petAge" />
 
-    <EditText
-        android:id="@+id/petPrice"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_backgroud"
-        android:drawableLeft="@drawable/rupee_24"
-        android:drawablePadding="5dp"
-        android:drawableTint="@color/app_theme"
-        android:ems="10"
-        android:hint="Set your pet price"
-        android:inputType="text"
-        android:textColor="#1A1A27"
-        android:textColorHint="#653E3C3C"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petBreed" />
+        <EditText
+            android:id="@+id/petPrice"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_backgroud"
+            android:drawableLeft="@drawable/rupee_24"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/app_theme"
+            android:ems="10"
+            android:hint="Set your pet price"
+            android:inputType="text"
+            android:textColor="#1A1A27"
+            android:textColorHint="#653E3C3C"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/petBreed" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="104dp"
         android:text="@string/select_pet_type"
         android:textColor="#2A2B5B"
         android:textSize="11sp"
         app:layout_constraintBottom_toTopOf="@+id/petName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/radioGroup" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="283dp"
         android:layout_height="191dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:background="@color/app_theme_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -212,4 +216,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/petAge"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_backgroud"
+            android:drawableLeft="@drawable/baseline_calendar_month_24"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/app_theme"
+            android:ems="10"
+            android:hint="Enter Your Pet Age"
+            android:inputType="text"
+            android:textColor="#1A1A27"
+            android:textColorHint="#653E3C3C"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/petName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
