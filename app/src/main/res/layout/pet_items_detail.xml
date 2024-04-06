@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/edit_text_backgroud"
     android:backgroundTint="@color/app_theme_light"
-    android:visibility="visible">
+    android:visibility="visible"
+    tools:context="PetDetail">
 
     <TextView
         android:id="@+id/perOwnerName"

@@ -1,16 +1,18 @@
 package com.example.mypet
 
+
+
+import com.example.mypet.PetDetail
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypet.databinding.ActivityHomeBinding
 import com.google.firebase.database.*
 
-class Home : AppCompatActivity() {
+class Home : AppCompatActivity(), PetAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var adapter: PetAdapter
@@ -32,11 +34,7 @@ class Home : AppCompatActivity() {
 
         // Set up adapter
         petList = mutableListOf()
-        adapter = PetAdapter(petList, object : PetAdapter.OnItemClickListener {
-            override fun onItemClick(pet: Pet) {
-                // Handle click event
-            }
-        })
+        adapter = PetAdapter(petList, this)
         recyclerView.adapter = adapter
 
         // Fetch pet data from Firebase
@@ -95,4 +93,10 @@ class Home : AppCompatActivity() {
         }
     }
 
+    override fun onItemClick(petId: String) {
+        // Launch PetDetailActivity and pass the pet ID as an extra
+        val intent = Intent(this, PetDetail::class.java)
+        intent.putExtra("petId", petId)
+        startActivity(intent)
+    }
 }
