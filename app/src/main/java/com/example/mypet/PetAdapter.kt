@@ -15,7 +15,7 @@ class PetAdapter(private val petList: List<Pet>, private val listener: OnItemCli
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onItemClick(petList[position].id) // Pass pet ID to listener
+                   listener.onItemClick(petList[position].id) // Pass pet ID to listener
                 }
             }
             binding.imageButton2.setOnClickListener {

@@ -129,16 +129,16 @@ class AddPet : AppCompatActivity() {
         }
 
         // You can add further validations for pet price format (optional)
-          try {
-              val price = petPrice.toDouble()
-              if (price <= 0) {
-                  binding.petPrice.error = "Please enter a valid price."
-                  isValid = false
-              }
-          } catch (e: Exception) {
-              binding.petPrice.error = "Please enter a valid price."
-              isValid = false
-          }
+        try {
+            val price = petPrice.toDouble()
+            if (price <= 0) {
+                binding.petPrice.error = "Please enter a valid price."
+                isValid = false
+            }
+        } catch (e: Exception) {
+            binding.petPrice.error = "Please enter a valid price."
+            isValid = false
+        }
 
         return isValid
     }
@@ -151,6 +151,7 @@ class AddPet : AppCompatActivity() {
         val petType = checkedRadioButton.text.toString().trim()
         val petAge = binding.petAge.text.trim()
         val petName = binding.petName.text.toString().trim()
+        val petBreed = binding.petBreed.text.toString().trim()
         val petPrice = binding.petPrice.text.toString().trim()
         val petDescription = binding.petDescription.text.toString().trim()
         // Get current user ID
@@ -181,7 +182,7 @@ class AddPet : AppCompatActivity() {
                         // Save pet information to Firebase Database with image URL
                         if (userId != null) {
                             savePetToDatabase(userId,petType,
-                                petAge.toString(), petName, petPrice, petDescription, imageUrl)
+                                petAge.toString(), petName,petBreed ,petPrice, petDescription, imageUrl)
                         }
                     } else {
                         Toast.makeText(this, "Failed to get image URL.", LENGTH_SHORT).show()
@@ -204,12 +205,13 @@ class AddPet : AppCompatActivity() {
         petType: String,
         petAge: String,
         petName: String,
+        petBreed: String,
         petPrice: String,
         petDescription: String,
         imageUrl: String
     ) {
         val petId = databaseReference.push().key.toString() // Unique key
-        val pet = Pet(userId, petType, petAge , petName, petPrice, petDescription, imageUrl)
+        val pet = Pet(userId, petType, petAge , petName, petBreed,petPrice, petDescription, imageUrl)
         databaseReference.child(petId).setValue(pet)
             .addOnSuccessListener {
                 Toast.makeText(this, "Pet information saved successfully!", Toast.LENGTH_SHORT)

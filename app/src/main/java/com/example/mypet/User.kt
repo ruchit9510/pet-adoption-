@@ -1,11 +1,12 @@
 package com.example.mypet
 
+import com.google.firebase.database.IgnoreExtraProperties
+import com.google.firebase.database.PropertyName
+
+@IgnoreExtraProperties
 data class User(
-    var name: String? = null,
-    var mail: String? = null,
-    var number: String? = null,
-    var address: String? = null
-) {
-    // Add a no-argument constructor here
-    constructor() : this(null, null, null, null) {}
-}
+    var name: String = "",
+    @get:PropertyName("number") @set:PropertyName("number") var number: String = "",
+    @get:PropertyName("mail") @set:PropertyName("mail") var mail: String = "",
+    var address: String = ""
+)

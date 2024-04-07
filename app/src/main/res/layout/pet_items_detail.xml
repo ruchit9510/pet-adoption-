@@ -7,7 +7,7 @@
     android:background="@drawable/edit_text_backgroud"
     android:backgroundTint="@color/app_theme_light"
     android:visibility="visible"
-    tools:context="PetDetail">
+    tools:context=".PetDetail">
 
     <TextView
         android:id="@+id/perOwnerName"
@@ -143,6 +143,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_backgroud"
         android:text="TextView"
+        android:textColor="#1A1A27"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
