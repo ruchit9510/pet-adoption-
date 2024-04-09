@@ -3,13 +3,20 @@ package com.example.mypet
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.mypet.databinding.ActivityForumBinding
 
 class Forum : AppCompatActivity() {
 
     private lateinit var binding: ActivityForumBinding
+    private lateinit var msgRecyclerView: RecyclerView
+    private lateinit var msgBox: EditText
+    private lateinit var msgSendButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +55,10 @@ class Forum : AppCompatActivity() {
                 else -> false
             }
         }
+
+        val chatRecyclerView = binding.msgRecyclerView
+        val messageBox = binding.msgBox
+        val sendButton = binding.msgSendButton
     }
     // BackPress Button
     private var backPressCount = 0
