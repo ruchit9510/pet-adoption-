@@ -2,7 +2,6 @@ package com.example.mypet
 
 
 
-import com.example.mypet.PetDetail
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast

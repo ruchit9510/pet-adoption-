@@ -33,7 +33,7 @@ class PetDetail : AppCompatActivity() {
         petId = intent.getStringExtra("petId") ?: ""
 
         // Fetch pet details from Firebase
-        petRef.child(petId).addListenerForSingleValueEvent(object : ValueEventListener {
+        petRef.child(petId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val pet = snapshot.getValue(Pet::class.java)

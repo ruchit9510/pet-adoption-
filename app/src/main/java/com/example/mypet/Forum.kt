@@ -2,6 +2,7 @@ package com.example.mypet
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mypet.databinding.ActivityForumBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
@@ -95,25 +97,39 @@ class Forum : AppCompatActivity() {
                     return@addSnapshotListener
                 }
 
-                snapshot?.let {
-                    messageList.clear()
-                    for (document in snapshot.documents) {
-                        val message = document.toObject(message::class.java)
-                        message?.let {
-                            messageList.add(message)
+                snapshot?.let { snapshot ->
+                    snapshot.documentChanges.forEach { change ->
+                        val message = change.document.toObject(message::class.java)
+                        when (change.type) {
+                            DocumentChange.Type.ADDED -> {
+                                // Add new message to the messageList
+                                messageList.add(message)
+                                // Notify adapter about the new item inserted
+                                messageAdapter.notifyItemInserted(messageList.size - 1)
+                                // Scroll to the newly added message
+                                msgRecyclerView.scrollToPosition(messageList.size - 1)
+                            }
+                            DocumentChange.Type.MODIFIED -> {
+                                // Handle modified message (if needed)
+                            }
+                            DocumentChange.Type.REMOVED -> {
+                                // Handle removed message (if needed)
+                            }
+                            else -> {
+                                Log.e("Forum", "Unexpected document change type: ${change.type}")
+                            }
                         }
                     }
-                    messageAdapter.notifyDataSetChanged()
-                    msgRecyclerView.scrollToPosition(messageList.size - 1) // Scroll to last message
                 }
             }
+
     }
 
     private fun sendMessageToFirestore(message: message) {
         db.collection("messages")
             .add(message)
             .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Message sent successfully", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "Message sent successfully", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Failed to send message: ${e.message}", Toast.LENGTH_SHORT).show()

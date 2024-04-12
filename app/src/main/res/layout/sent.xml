@@ -15,11 +15,12 @@
             android:id="@+id/sent_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/message_sent"
+            android:maxWidth="250dp"
             android:padding="10dp"
             android:text="This is sent message"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:background="@drawable/message_sent"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/sent_user"

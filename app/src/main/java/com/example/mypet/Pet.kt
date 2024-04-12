@@ -1,14 +1,13 @@
 package com.example.mypet
 
-
 data class Pet(
-    var userId: String = "",
-    var petType: String = "",
-    var petAge: String = "",
-    var name: String = "",
-    var breed: String = "",
-    var price: String = "",
-    var description: String = "",
+    var breed: String? = null, // Nullable because it's missing in some Firebase entries
+    var description: String? = null, // Nullable because it's missing in some Firebase entries
+    var id: String = "",
     var imageUrl1: String = "",
-   var id: String = ""
+    var name: String = "",
+    var petAge: String = "",
+    var petType: String = "",
+    var price: String = "",
+    var userId: String = ""
 )
